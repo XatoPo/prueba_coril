@@ -1,6 +1,14 @@
 -- ===========================================================================
--- Esquema de Base de Datos: Portfolio Management (Saldos y Movimientos)
+-- Esquema de Base de Datos: Portfolio Management
 -- ===========================================================================
+
+-- Tabla de catálogo de Fondos Mutuos.
+-- Resuelve la necesidad de mostrar el "Fondo asociado" (nombre real y moneda).
+CREATE TABLE fund (
+    id VARCHAR(50) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    currency VARCHAR(3) NOT NULL
+);
 
 -- Tabla de saldos consolidados por cliente y fondo.
 -- Mantiene la posición actual ejecutada, aislando las transacciones en tránsito.
@@ -10,8 +18,8 @@ CREATE TABLE balance (
     fund_id VARCHAR(50) NOT NULL,
     total_shares DECIMAL(19, 4) NOT NULL DEFAULT 0.0000,
     invested_amount DECIMAL(19, 4) NOT NULL DEFAULT 0.0000,
-    currency VARCHAR(3) NOT NULL,
     last_updated TIMESTAMP NOT NULL,
+    CONSTRAINT fk_balance_fund FOREIGN KEY (fund_id) REFERENCES fund(id),
     CONSTRAINT uk_client_fund UNIQUE (client_id, fund_id)
 );
 
@@ -21,14 +29,14 @@ CREATE TABLE movement (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     client_id VARCHAR(50) NOT NULL,
     fund_id VARCHAR(50) NOT NULL,
-    type VARCHAR(20) NOT NULL, -- Valores permitidos: SUBSCRIPTION, REDEMPTION
+    type VARCHAR(20) NOT NULL, 
     amount DECIMAL(19, 4) NOT NULL,
     shares DECIMAL(19, 4),
     share_value DECIMAL(19, 4),
-    currency VARCHAR(3) NOT NULL,
     transaction_date TIMESTAMP NOT NULL,
-    status VARCHAR(20) NOT NULL, -- Valores permitidos: PENDING, EXECUTED, REJECTED
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    status VARCHAR(20) NOT NULL, 
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_movement_fund FOREIGN KEY (fund_id) REFERENCES fund(id)
 );
 
 -- Índices estratégicos para optimizar las consultas del portafolio por cliente
