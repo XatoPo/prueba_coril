@@ -87,9 +87,9 @@ spring:
 
 La capa de presentación de la API necesita proyectar datos de las entidades JPA hacia el contrato REST, sin exponer directamente la estructura interna de las entidades ni permitir mutaciones accidentales en la capa de red.
 
-### Alternativa descartada — Clases POJO / `@JsonIgnore`
+### Alternativa descartada — Clases POJO (Plain Old Java Object) / `@JsonIgnore`
 
-El uso de entidades JPA directamente como objetos de respuesta acopla el modelo de persistencia con el contrato de API. Cualquier cambio en la entidad impacta inmediatamente en el JSON serializado. El uso de `@JsonIgnore` es una solución parcial y frágil.
+El uso de entidades JPA (Java Persistence API) directamente como objetos de respuesta acopla el modelo de persistencia con el contrato de API. Cualquier cambio en la entidad impacta inmediatamente en el JSON serializado. El uso de `@JsonIgnore` es una solución parcial y frágil.
 
 ### Decisión adoptada — Java Records
 
@@ -131,17 +131,17 @@ public record BalanceResponse(
 
 ---
 
-## ADR-004 · Frontend SPA con Vite y React
+## ADR-004 · Frontend SPA (Single Page Application) con Vite y React
 
 ### Contexto
 
 La interfaz de usuario necesita consumir la API REST y presentar el portafolio al inversionista. La decisión sobre el framework y el modelo de renderizado impacta en la complejidad de la solución, el tiempo de arranque del entorno de desarrollo y la adecuación al alcance del MVP.
 
-### Alternativa descartada — Next.js (SSR/SSG)
+### Alternativa descartada — Next.js (SSR/SSG) (Server-Side Rendering/Static Site Generation)
 
 Next.js ofrece Server-Side Rendering y generación estática, características valiosas para SEO, cacheo de páginas y carga inicial optimizada. Sin embargo, estas características introducen complejidad: requieren un servidor Node.js en producción, el modelo de data-fetching es más complejo (Server Components, `getServerSideProps`), y el overhead de configuración no aporta valor para una pantalla de portafolio que requiere autenticación previa y datos completamente dinámicos.
 
-### Decisión adoptada — Vite + React SPA
+### Decisión adoptada — Vite + React SPA (Single Page Application)
 
 ```
 frontend_coril/
