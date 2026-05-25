@@ -1,0 +1,46 @@
+# =========================
+# Node / Frontend (React)
+# =========================
+frontend_coril/node_modules/
+frontend_coril/dist/
+frontend_coril/dist-ssr/
+frontend_coril/.env
+frontend_coril/.env.local
+frontend_coril/.env.development.local
+frontend_coril/.env.test.local
+frontend_coril/.env.production.local
+frontend_coril/npm-debug.log*
+frontend_coril/yarn-debug.log*
+frontend_coril/yarn-error.log*
+
+# =========================
+# Java / Backend (Spring Boot & Maven)
+# =========================
+backend_coril/target/
+backend_coril/pom.xml.tag
+backend_coril/pom.xml.releaseBackup
+backend_coril/pom.xml.versionsBackup
+backend_coril/pom.xml.next
+backend_coril/release.properties
+backend_coril/dependency-reduced-pom.xml
+backend_coril/buildNumber.properties
+backend_coril/.mvn/timing.properties
+backend_coril/.mvn/wrapper/maven-wrapper.jar
+
+# =========================
+# IDEs y Editores
+# =========================
+.idea/
+*.iml
+*.iws
+.classpath
+.project
+.settings/
+.vscode/
+*.sublime-workspace
+
+# =========================
+# Sistema Operativo
+# =========================
+.DS_Store
+Thumbs.db
