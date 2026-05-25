@@ -1,148 +1,527 @@
-/* Tarjeta de Saldos */
+/* ========================================
+   PORTFOLIO VIEW — Estilos de Dominio
+   Coril Portfolio · Financial-grade premium UI
+   ======================================== */
+
+/* ========================================
+   LAYOUT PRINCIPAL
+   ======================================== */
+.portfolio-layout {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
+
+/* ========================================
+   HEADER
+   ======================================== */
+.portfolio-header {
+  position: relative;
+  padding: 2.5rem 0 2rem;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.portfolio-header-text h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #e8eaf0 0%, #9399a8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.375rem;
+}
+
+.portfolio-header-text p {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.portfolio-investor-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--color-primary-dim);
+  border: 1px solid rgba(79, 142, 247, 0.25);
+  border-radius: 99px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  flex-shrink: 0;
+  letter-spacing: 0.01em;
+}
+
+.portfolio-investor-chip svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* ========================================
+   SECCIÓN GENÉRICA
+   ======================================== */
+.portfolio-section {
+  margin-bottom: 3rem;
+  animation: fadeIn 0.4s var(--transition-base);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+/* ========================================
+   BALANCE CARDS
+   ======================================== */
 .balance-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
 }
 
 .balance-card {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: 1.5rem;
-    box-shadow: var(--shadow-sm);
-    display: flex;
-    flex-direction: column;
+  position: relative;
+  background: var(--color-bg-glass);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  overflow: hidden;
+  transition: border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+  cursor: default;
 }
 
-.balance-card h3 {
-    margin: 0 0 1rem 0;
-    color: var(--color-text-main);
-    font-size: 1.125rem;
-    border-bottom: 1px solid var(--color-border);
-    padding-bottom: 0.5rem;
+.balance-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  opacity: 0;
+  transition: opacity var(--transition-base);
 }
 
-.balance-details {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
+.balance-card:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card), var(--shadow-glow);
 }
 
-.detail-item {
-    display: flex;
-    flex-direction: column;
+.balance-card:hover::before {
+  opacity: 1;
 }
 
-.detail-item .label {
-    font-size: 0.75rem;
-    color: var(--color-text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.25rem;
+.balance-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
 }
 
-.detail-item .value {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--color-primary);
+.balance-fund-name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  line-height: 1.35;
 }
 
-.balance-footer {
-    font-size: 0.75rem;
-    color: var(--color-text-muted);
-    text-align: right;
-    margin-top: auto;
+.balance-currency-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.625rem;
+  background: var(--color-primary-dim);
+  border: 1px solid rgba(79, 142, 247, 0.2);
+  border-radius: 99px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: 0.08em;
+  flex-shrink: 0;
 }
 
-/* Tabla de Movimientos */
+.balance-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.balance-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.balance-stat-label {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.balance-stat-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: -0.02em;
+}
+
+.balance-stat-value.shares {
+  color: var(--color-text-main);
+  font-size: 1.0625rem;
+}
+
+.balance-card-footer {
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.balance-card-footer svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+/* ========================================
+   TABLA DE MOVIMIENTOS
+   ======================================== */
+.table-wrapper {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+/* Toolbar interno de la tabla (filtro por fondo) */
+.table-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.125rem;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+  flex-wrap: wrap;
+}
+
+.toolbar-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.fund-filter-bar {
+  display: flex;
+  gap: 0.375rem;
+  flex-wrap: wrap;
+}
+
 .table-container {
-    width: 100%;
-    overflow-x: auto;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Fila vacía dentro de tabla al filtrar */
+.td-empty-filter {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
 }
 
 .movement-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  min-width: 700px;
 }
 
-.movement-table th, .movement-table td {
-    padding: 1rem;
-    border-bottom: 1px solid var(--color-border);
-    font-size: 0.875rem;
+.movement-table thead {
+  background: var(--color-bg-elevated);
 }
 
 .movement-table th {
-    background-color: var(--color-background);
-    color: var(--color-text-muted);
-    font-weight: 600;
+  padding: 0.875rem 1.125rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
 }
 
-.movement-table tr:last-child td {
-    border-bottom: none;
+/* Cabecera ordenable */
+.th-sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: color var(--transition-fast), background var(--transition-fast);
+  position: relative;
 }
 
-/* Semántica Visual de Operaciones */
-.type-subscription {
-    color: var(--color-success);
-    font-weight: 600;
+.th-sortable:hover {
+  color: var(--color-text-main);
+  background: rgba(255,255,255,0.03);
 }
 
-.type-redemption {
-    color: var(--color-secondary);
-    font-weight: 600;
+.th-sort-active {
+  color: var(--color-primary) !important;
 }
 
-/* Badges de Estado */
-.badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.375rem;
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    font-weight: 600;
+.sort-icon {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 4px;
+  vertical-align: middle;
+  opacity: 0.4;
+  transition: opacity var(--transition-fast);
 }
 
-.badge-warning {
-    background-color: #FEF3C7;
-    color: #D97706;
+.sort-icon svg {
+  width: 12px;
+  height: 12px;
 }
 
-.badge-success {
-    background-color: #D1FAE5;
-    color: #059669;
+.th-sortable:hover .sort-icon {
+  opacity: 0.8;
 }
 
-.badge-error {
-    background-color: #FEE2E2;
-    color: #DC2626;
+.th-sort-active .sort-icon {
+  opacity: 1;
 }
 
-/* Controles de Filtro */
-.filter-container {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 1rem;
+.movement-table td {
+  padding: 1rem 1.125rem;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+  transition: background var(--transition-fast);
 }
 
-.filter-select {
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    background-color: var(--color-surface);
-    color: var(--color-text-main);
-    font-size: 0.875rem;
-    cursor: pointer;
-    outline: none;
+.movement-table tbody tr {
+  transition: background var(--transition-fast);
 }
 
-.filter-select:focus {
-    border-color: var(--color-primary);
+.movement-table tbody tr:hover td {
+  background: var(--color-bg-elevated);
+  color: var(--color-text-main);
 }
+
+.movement-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Columna Fecha */
+.col-date {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted) !important;
+}
+
+/* Columna Fondo */
+.col-fund {
+  font-weight: 500;
+  color: var(--color-text-main) !important;
+  max-width: 200px;
+}
+
+/* Columna Monto */
+.col-amount {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.col-amount.subscription { color: var(--color-accent) !important; }
+.col-amount.redemption   { color: var(--color-danger) !important; }
+
+/* Columna Cuotas */
+.col-shares {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted) !important;
+}
+
+/* ---- Chips de Tipo de Operación ---- */
+.operation-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.operation-chip svg {
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+}
+
+.operation-chip.subscription {
+  background: var(--color-accent-dim);
+  color: var(--color-accent);
+  border: 1px solid rgba(110, 231, 183, 0.2);
+}
+
+.operation-chip.redemption {
+  background: var(--color-danger-dim);
+  color: var(--color-danger);
+  border: 1px solid rgba(248, 113, 113, 0.2);
+}
+
+/* ---- Badges de Estado ---- */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-badge svg {
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+}
+
+.status-badge.executed {
+  background: var(--color-accent-dim);
+  color: var(--color-accent);
+  border: 1px solid rgba(110, 231, 183, 0.2);
+}
+
+.status-badge.pending {
+  background: var(--color-warning-dim);
+  color: var(--color-warning);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+.status-badge.rejected {
+  background: var(--color-danger-dim);
+  color: var(--color-danger);
+  border: 1px solid rgba(248, 113, 113, 0.2);
+}
+
+/* ========================================
+   FILTER GROUP (etiqueta + botonera)
+   ======================================== */
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  flex-wrap: wrap;
+}
+
+.filter-group-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  white-space: nowrap;
+}
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  flex-wrap: wrap;
+}
+
+/* Botón de filtro con contraste mejorado */
+.filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.875rem;
+  border: 1px solid var(--color-border-hover);
+  border-radius: 99px;
+  background: var(--color-bg-elevated);
+  color: var(--color-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: var(--font-sans);
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+.filter-btn:hover {
+  border-color: rgba(255,255,255,0.22);
+  color: var(--color-text-main);
+  background: rgba(255,255,255,0.08);
+}
+
+.filter-btn.active {
+  background: var(--color-primary-dim);
+  border-color: rgba(79, 142, 247, 0.5);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* ========================================
+   ANIMACIONES DE FILAS DE TABLA
+   ======================================== */
+@keyframes rowSlideIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.movement-table tbody tr {
+  animation: rowSlideIn 0.3s var(--transition-base) both;
+}
+
+.movement-table tbody tr:nth-child(1)  { animation-delay: 0ms;  }
+.movement-table tbody tr:nth-child(2)  { animation-delay: 40ms; }
+.movement-table tbody tr:nth-child(3)  { animation-delay: 80ms; }
+.movement-table tbody tr:nth-child(4)  { animation-delay: 120ms; }
+.movement-table tbody tr:nth-child(5)  { animation-delay: 160ms; }
+.movement-table tbody tr:nth-child(6)  { animation-delay: 200ms; }
+.movement-table tbody tr:nth-child(7)  { animation-delay: 240ms; }
+.movement-table tbody tr:nth-child(8)  { animation-delay: 280ms; }
+.movement-table tbody tr:nth-child(9)  { animation-delay: 320ms; }
+.movement-table tbody tr:nth-child(10) { animation-delay: 360ms; }

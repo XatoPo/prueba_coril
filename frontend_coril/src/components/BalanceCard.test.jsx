@@ -10,12 +10,17 @@ describe('BalanceCard Component', () => {
         totalShares: 240.5555,
         investedAmount: 2400.00,
         currency: 'PEN',
-        lastUpdated: '2024-05-25T10:00:00'
+        lastUpdated: '2024-05-25T10:00:00',
     };
 
     it('renderiza el nombre del fondo correctamente', () => {
         render(<BalanceCard balance={mockBalance} />);
         expect(screen.getByText('Coril Efectivo Soles FM')).toBeDefined();
+    });
+
+    it('muestra el tag de la moneda', () => {
+        render(<BalanceCard balance={mockBalance} />);
+        expect(screen.getByText('PEN')).toBeDefined();
     });
 
     it('formatea las cuotas a 4 decimales exactos', () => {
@@ -25,7 +30,7 @@ describe('BalanceCard Component', () => {
 
     it('formatea el monto invertido con la moneda correspondiente', () => {
         render(<BalanceCard balance={mockBalance} />);
-        // Dependiendo del entorno de Node, el símbolo puede variar ligeramente (S/ o PEN),
+        // Dependiendo del entorno de Node, el símbolo puede variar (S/ o PEN)
         // pero validamos que el monto numérico base esté presente.
         const amountElement = screen.getByText(/2.400/i);
         expect(amountElement).toBeDefined();

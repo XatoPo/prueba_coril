@@ -1,14 +1,26 @@
 import './ui.css';
 
+const InboxIcon = () => (
+    <svg
+        width="28" height="28"
+        viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" strokeWidth={1.5}
+        strokeLinecap="round" strokeLinejoin="round"
+    >
+        <polyline points="22 12 16 12 14 15 10 15 8 12 2 12" />
+        <path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z" />
+    </svg>
+);
+
 /**
  * Representación visual para listas o consultas sin resultados.
  */
 export const EmptyState = ({ title, description }) => {
     return (
         <div className="empty-state">
-            <svg width="48" height="48" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
-            </svg>
+            <div className="empty-state-icon">
+                <InboxIcon />
+            </div>
             <h3>{title}</h3>
             <p>{description}</p>
         </div>
